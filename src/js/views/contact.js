@@ -10,9 +10,7 @@ export const Contact = () => {
 
 	return (
 		<div className="container">
-			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
-			</Link>
+			
 		</div>
 	);
 };
