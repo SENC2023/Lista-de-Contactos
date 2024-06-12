@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-
 import { Context } from "../store/appContext";
-
 import "../../styles/demo.css";
+import "../../styles/addContact.css";
 
 export const Demo = () => {
 	const { store, actions } = useContext(Context);
@@ -29,12 +28,13 @@ export const Demo = () => {
 					<label for="exampleInputAddress" className="form-label">Dirección</label>
 					<input type="text" className="form-control" id="exampleInputAddress" placeholder="Dirección"/>
 				</div>
-				
-				<button type="submit" className="btn btn-primary">Guardar</button>
+                <div className="">
+                    <button type="submit" className="BackContact btn btn-primary d-flex justify-content-center m-1">Guardar</button>
+                    <Link to="/">
+                    <p className="m-1">o volver a contactos</p>
+                    </Link>
+                </div>
 			</form>
-			<Link to="/">
-				<button className="btn btn-primary">o volver a contactos</button>
-			</Link>
 		</div>
 	);
 };
