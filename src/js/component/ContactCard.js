@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import "../../styles/ContactCard.css";
 
 export const ContactCard = () => {
 	return (
-		<div className="ContactCard m-4">
+		<div className="ContactCard">
             <div className="card mb-3">
                 <div className="row g-0">
                     <div className="col-md-3">

@@ -10,6 +10,14 @@ export const Contact = () => {
 	// const { store, actions } = useContext(Context);
 
 	return (
-		<ContactCard />
+		<div>
+			<div className="d-flex justify-content-end m-4">
+				<Link to="/demo">
+					<button className="btn btn-success">Añadir nuevo contacto</button>
+				</Link>
+			</div>
+			<ContactCard />
+		</div>
+		
 	);
 };
