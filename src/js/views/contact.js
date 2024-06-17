@@ -1,14 +1,10 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import ContactCard from "../component/ContactCard";
 import { Context } from "../store/appContext";
 
 export const Contact = () => {
     const { store, actions } = useContext(Context);
-
-    useEffect(() => {
-        actions.loadContacts();
-    }, []);
 
     return (
         <div>
@@ -21,7 +17,7 @@ export const Contact = () => {
                 <div className="row">
                     {store.contacts.map(contact => (
                         <div className="col-md-12" key={contact.id}>
-                            <ContactCard contact={contact} />
+                            <ContactCard contact={contact} deleteContact={actions.deleteContact} />
                         </div>
                     ))}
                 </div>

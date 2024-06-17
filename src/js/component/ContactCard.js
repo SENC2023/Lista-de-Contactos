@@ -1,10 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import "../../styles/ContactCard.css";
 
-const ContactCard = ({ contact }) => {
-	return (
-		<div className="ContactCard">
+const ContactCard = ({ contact, deleteContact }) => {
+    const handleDelete = () => {
+        deleteContact(contact.id);
+    };
+
+    return (
+        <div className="ContactCard">
             <div className="card mb-3">
                 <div className="row g-0">
                     <div className="col-md-3">
@@ -19,17 +24,20 @@ const ContactCard = ({ contact }) => {
                         </div>
                     </div>
                     <div className="d-flex justify-content-evenly col-md-3 mt-4">
-                        <i className="fa-solid fa-pen"></i>
-                        <i className="fa-solid fa-trash"></i>
+                        <Link to={`/edit/${contact.id}`}>
+                            <i className="fa-solid fa-pen"></i>
+                        </Link>
+                        <i className="fa-solid fa-trash" onClick={handleDelete}></i>
                     </div>
                 </div>
             </div>  
         </div>
-	);
+    );
 };
 
 ContactCard.propTypes = {
-	contact: PropTypes.object.isRequired
+    contact: PropTypes.object.isRequired,
+    deleteContact: PropTypes.func.isRequired
 };
 
-export default ContactCard;    
+export default ContactCard;
