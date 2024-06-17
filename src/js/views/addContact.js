@@ -1,18 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useParams } from "react-router-dom"; // Importar useParams
+import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/demo.css";
 import "../../styles/addContact.css";
 
 export const AddContact = () => {
-	const { id } = useParams(); // Obtener el id del contacto de la URL
+	const { id } = useParams();
 	const { store, actions } = useContext(Context);
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [phone, setPhone] = useState("");
 	const [address, setAddress] = useState("");
 
-	// Obtener los datos del contacto si se está editando
 	useEffect(() => {
 		if (id) {
 			const contact = store.contacts.find(contact => contact.id === parseInt(id));
@@ -29,9 +28,9 @@ export const AddContact = () => {
 		e.preventDefault();
 		const newContact = { name, email, phone, address };
 		if (id) {
-			actions.updateContact(parseInt(id), newContact); // Actualizar el contacto si hay un id
+			actions.updateContact(parseInt(id), newContact);
 		} else {
-			actions.addContact(newContact); // Agregar el contacto si no hay id
+			actions.addContact(newContact);
 		}
 		setName("");
 		setEmail("");
@@ -60,8 +59,8 @@ export const AddContact = () => {
 					<input type="text" className="form-control" id="exampleInputAddress" placeholder="Dirección" value={address} onChange={(e) => setAddress(e.target.value)} />
 				</div>
 				<div>
-					<button type="submit" className="btn btn-primary">Guardar</button>
-					<Link to="/" className="btn btn-secondary ms-2">Cancelar</Link>
+					<button type="submit" className="BackContact btn btn-primary">Guardar</button>
+					<Link to="/" className="ms-2">o volver a contactos</Link>
 				</div>
 			</form>
 		</div>

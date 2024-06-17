@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { AddContact } from "./views/addContact";
 import { Contact } from "./views/contact";
-import injectContext, { Context } from "./store/appContext"; // Importar Context aquí
+import injectContext, { Context } from "./store/appContext";
 import { Navbar } from "./component/navbar";
 
 const Layout = () => {

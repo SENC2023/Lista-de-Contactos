@@ -16,14 +16,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 					const data = await response.json();
 					console.log('Contacts data', data);
-					setStore({ contacts: data.contacts || [] });  // Si no hay contactos, establecemos un arreglo vacío
+					setStore({ contacts: data.contacts || [] });
 				} catch (error) {
 					console.error('Error loading contacts', error);
 				}
 			},
 			addContact: async (newContact) => {
 				try {
-					// Verificar que los campos no estén vacíos
 					if (!newContact.name || !newContact.email || !newContact.phone || !newContact.address) {
 						console.log('Campos recibidos:', newContact);
 						throw new Error('Todos los campos son obligatorios');
