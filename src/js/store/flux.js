@@ -23,21 +23,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			addContact: async (newContact) => {
 				try {
-					console.log("Adding contact:", newContact);
-					const response = await fetch("https://playground.4geeks.com/contact/agendas/Juan/contacts/", {
-						method: "POST",
+					// Verificar que los campos no estén vacíos
+					if (!newContact.name || !newContact.email || !newContact.phone || !newContact.address) {
+						console.log('Campos recibidos:', newContact);
+						throw new Error('Todos los campos son obligatorios');
+					}
+			
+					const response = await fetch("https://playground.4geeks.com/contact/agendas/Juan/contacts", {
+						method: 'POST',
 						headers: {
-							"Content-Type": "application/json"
+							'Content-Type': 'application/json'
 						},
-						body: JSON.stringify(newContact)
+						body: JSON.stringify({
+							name: newContact.name,
+							email: newContact.email,
+							phone: newContact.phone,
+							address: newContact.address
+						})
 					});
 					if (!response.ok) {
-						throw new Error("Failed to add contact");
+						throw new Error('Failed to add contact');
 					}
 					const data = await response.json();
 					setStore({ contacts: [...getStore().contacts, data] });
 				} catch (error) {
-					console.error("Error adding contact:", error);
+					console.error('Error adding contact', error);
 				}
 			},
 			updateContact: async (id, updatedContact) => {

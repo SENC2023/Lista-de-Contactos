@@ -7,7 +7,7 @@ import "../../styles/addContact.css";
 export const AddContact = () => {
 	const { id } = useParams(); // Obtener el id del contacto de la URL
 	const { store, actions } = useContext(Context);
-	const [fullName, setFullName] = useState("");
+	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [phone, setPhone] = useState("");
 	const [address, setAddress] = useState("");
@@ -17,7 +17,7 @@ export const AddContact = () => {
 		if (id) {
 			const contact = store.contacts.find(contact => contact.id === parseInt(id));
 			if (contact) {
-				setFullName(contact.name);
+				setName(contact.name);
 				setEmail(contact.email);
 				setPhone(contact.phone);
 				setAddress(contact.address);
@@ -27,13 +27,13 @@ export const AddContact = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const newContact = { full_name: fullName, email, phone, address };
+		const newContact = { name, email, phone, address };
 		if (id) {
 			actions.updateContact(parseInt(id), newContact); // Actualizar el contacto si hay un id
 		} else {
 			actions.addContact(newContact); // Agregar el contacto si no hay id
 		}
-		setFullName("");
+		setName("");
 		setEmail("");
 		setPhone("");
 		setAddress("");
@@ -45,7 +45,7 @@ export const AddContact = () => {
 			<form onSubmit={handleSubmit}>
 				<div className="mb-3">
 					<label htmlFor="exampleInputName" className="form-label">Nombre completo</label>
-					<input type="text" className="form-control" id="exampleInputName" placeholder="Nombre completo" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+					<input type="text" className="form-control" id="exampleInputName" placeholder="Nombre completo" value={name} onChange={(e) => setName(e.target.value)} />
 				</div>
 				<div className="mb-3">
 					<label htmlFor="exampleInputEmail" className="form-label">Email</label>
